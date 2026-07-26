@@ -33,10 +33,20 @@ def initialize_directories():
 
 def sort_files(directory):
 
+    # move txt files
     for file in directory.iterdir():
         current_item = file.name
         if current_item.endswith(".txt") or current_item.endswith(".rtf"):
             shutil.move(file, txt_folder)
+
+        if current_item.endswith(".iso"):
+            shutil.move(file, iso_folder)
+
+        if current_item.endswith(".dmg"):
+            shutil.move(file, executables_folder)
+
+        if current_item.endswith(".png"):
+            shutil.move(file, images_folder)
 
 
 initialize_directories()
