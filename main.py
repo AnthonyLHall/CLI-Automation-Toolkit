@@ -1,1 +1,2 @@
 from organize_files import sort_files
+from organize_files import initialize_directories

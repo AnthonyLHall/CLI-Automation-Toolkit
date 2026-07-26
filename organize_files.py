@@ -1,26 +1,45 @@
 from pathlib import Path
-import os
+import shutil
 
 downloads_dir = Path.home() / "Downloads"
 txt_folder = downloads_dir / "TXTFILES"
 executables_folder = downloads_dir / "EXECUTABLES"
-Path.mkdir(txt_folder)
+images_folder = downloads_dir / "IMAGES"
+iso_folder = downloads_dir / "ISOs"
 
-for item in txt_folder.iterdir():
-    print(item)
 
-def sort_files(directory):
-
+def initialize_directories():
     try:
         Path.mkdir(txt_folder)
     except:
         print("txt_folder already exists...")
-
+    
     try:
         Path.mkdir(executables_folder)
     except:
         print("Executables already exists...")
 
-    for file in directory.iterdir():
-        print(file)
+    try:
+        Path.mkdir(images_folder)
+    except:
+        print("Images already exists...")
 
+    try:
+        Path.mkdir(iso_folder)
+    except:
+        print("Isos already exists...")
+
+
+
+def sort_files(directory):
+
+    for file in directory.iterdir():
+        current_item = file.name
+        if current_item.endswith(".txt") or current_item.endswith(".rtf"):
+            shutil.move(file, txt_folder)
+
+
+initialize_directories()
+
+
+sort_files(downloads_dir)
